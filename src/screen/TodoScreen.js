@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { IconButton } from "react-native-paper";
 
 const dummyData = [
@@ -20,10 +20,21 @@ const dummyData = [
     title: "Read A book",
   },
 ];
+Date.now().toString();
 const TodoScreen = () => {
   // init local states
   const [todo, setTodo] = useState("");
+  const [todoList, setTodoList] = useState([]);
+  // handle add todo
+  const handleAddTodo = () => {
+    // structure of a single todo item
+    //  {
+    //   id:
+    //   title:
+    //  }
 
+    setTodoList(...todoList, { id: Date.now().toString() });
+  };
   // render todo
   const renderTodos = ({ item, index }) => {
     return (
@@ -72,6 +83,7 @@ const TodoScreen = () => {
           marginVertical: 34,
           alignItems: "center",
         }}
+        onPress={() => handleAddTodo()}
       >
         <Text style={{ color: "#fff", fontWeight: "bold", fontSize: "20" }}>
           Add
